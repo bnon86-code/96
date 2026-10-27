@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>السعودية خط أحمر — المادة 34</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04161c;--panel:#ffffff;--tq:#2ec4c4;--tq2:#1f7a3d;--red:#e0262f;--red2:#ff4b53;--green:#0e7a43;--green2:#16a35a;--txt:#14361d;--mut:#557060}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:radial-gradient(ellipse at 50% 40%,#ffffff 0,#f6f8f6 60%,#eaf0eb 100%);color:var(--txt);font-family:Tajawal,Tahoma,sans-serif}
+.app{height:100vh;display:grid;grid-template-columns:1fr;grid-template-rows:auto 1fr auto auto;gap:0 2vw;padding:2.2vh 2.2vw 0}
+header{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:1.4vw;text-align:center}
+.art{background:var(--red);color:#fff;font-weight:900;font-size:clamp(18px,2.3vw,40px);padding:.2em .8em;border-radius:.4em;box-shadow:0 0 30px #e0262f66}
+.title{font-weight:900;font-size:clamp(20px,2.6vw,46px);line-height:1.2}
+.title small{display:block;font-size:.5em;font-weight:700;color:var(--tq2);margin-top:.2em}
+main{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}
+.big{margin-top:1.4vh;font-weight:900;font-size:clamp(26px,3.4vw,64px);line-height:1.1;color:#0f4a22}
+.big span{color:var(--red)}
+.stage{--bh:clamp(54px,10vh,104px);position:relative;width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin:.5vh 0 0}
+.band{position:absolute;inset-inline:0;top:50%;height:var(--bh);transform:translateY(-50%);background:#14361d0d;box-shadow:inset 0 0 0 1px #14361d1f;border-radius:4px;transition:.8s}
+.side{position:relative;z-index:1;height:var(--bh);display:grid;grid-template-rows:repeat(3,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;padding:2px;min-width:0}
+.side.l{direction:ltr}
+.brick{direction:rtl;background:linear-gradient(#ee4141,#c3141d 55%,#900b12);color:#fff;font-weight:700;font-size:clamp(10px,.88vw,17px);display:flex;align-items:center;justify-content:center;border-radius:2px;white-space:nowrap;overflow:hidden;padding:0 4px;box-shadow:inset 0 1px 0 #ff9b9b80,0 2px 4px #0005;min-width:0}
+.brick span{overflow:hidden;text-overflow:ellipsis}
+.brick.empty{background:transparent;box-shadow:inset 0 0 0 1px #14361d14}
+.brick.new{animation:brickin 1.1s ease}
+@keyframes brickin{0%{transform:scale(1.8);filter:brightness(2)}100%{transform:scale(1);filter:none}}
+.stage.full .band{background:linear-gradient(#ee4141,#c3141d 55%,#900b12);box-shadow:0 0 40px #ff2a33aa}
+.mapw{position:relative;z-index:2;margin-inline:-3vw}
+.mapw svg{height:min(47vh,36vw);width:auto;display:block;filter:drop-shadow(0 10px 14px #14361d55)}
+.land{fill:url(#g);stroke:#fff;stroke-width:6;stroke-linejoin:round;paint-order:stroke}
+.hash{width:100%;max-width:1000px;height:clamp(44px,7.5vh,96px);margin-top:0}
+.hash text{font-weight:900;font-size:78px}
+.hcount{font-size:clamp(14px,1.3vw,22px);color:var(--mut);margin-top:.3vh}
+.hcount b{color:var(--txt)}
+aside{display:flex;flex-direction:row;gap:1.5vw;justify-content:center;align-items:stretch;min-height:0;margin-top:1vh}
+.box{background:var(--panel);border:1px solid #dbe5de;box-shadow:0 6px 20px #14361d14;border-radius:18px;padding:1.4vh 1.4vw;text-align:center}
+#qr{background:#fff;padding:10px;border-radius:12px;display:inline-block;margin-bottom:1vh}
+#qr img,#qr canvas{display:block;width:min(10vw,13vh)!important;height:auto!important}
+.box.qrb{display:flex;align-items:center;gap:1.2vw;text-align:right}.box.qrb #qr{margin:0;padding:6px}
+.box.st{min-width:min(34vw,520px)}
+.box h3{font-size:clamp(16px,1.5vw,26px);font-weight:900}
+.box p{color:var(--mut);font-size:clamp(12px,1vw,17px);margin-top:.4vh}
+.stat{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:.8vh 0}
+.stat span{font-size:clamp(13px,1.1vw,19px);color:var(--mut)}
+.stat b{font-size:clamp(20px,2vw,36px);font-weight:900}
+.bar{height:10px;border-radius:9px;background:#14361d14;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--red);border-radius:9px;transition:width 1s;margin-right:0}
+.bar.s i{background:linear-gradient(90deg,#1f9d55,#0f6a33)}
+footer{grid-column:1/-1;height:6.5vh;margin:1.2vh -2.2vw 0;background:#0f4a22;color:#fff;border-top:2px solid var(--red);overflow:hidden;display:flex;align-items:center;white-space:nowrap}
+.track{display:inline-flex;gap:2.2vw;padding-inline:2vw;font-size:clamp(15px,1.6vw,28px);font-weight:700;animation:tick 60s linear infinite}
+.track span::before{content:"✦ ";color:var(--red)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(50%)}}
+.toast{position:fixed;top:14vh;left:50%;transform:translate(-50%,-30px) scale(.9);opacity:0;background:linear-gradient(135deg,#1d5a2a,#0f2f17);border:2px solid var(--tq);border-radius:20px;padding:1.4vh 2.4vw;text-align:center;transition:.45s;z-index:20;box-shadow:0 20px 60px #000a}
+.toast.on{opacity:1;transform:translate(-50%,0) scale(1)}
+.toast.t{border-color:var(--red)}
+.toast{color:#fff}.toast .n{font-size:clamp(24px,3vw,54px);font-weight:900}
+.toast .r{font-size:clamp(13px,1.2vw,20px);color:var(--tq2)}
+.toast.t .r{color:#ff9a9f}
+/* الختام */
+#fin{position:fixed;inset:0;z-index:50;background:#020b0e;color:#fff;display:none;align-items:center;justify-content:center;overflow:hidden;cursor:pointer}
+#fin.on{display:flex}
+#cloud{position:absolute;inset:0;transition:opacity 1.5s}
+#cloud span{position:absolute;font-weight:700;opacity:0;animation:fade 1.2s forwards;white-space:nowrap}
+@keyframes fade{0%{opacity:0;transform:scale(1.8)}25%{opacity:.9}100%{opacity:.28;transform:scale(1)}}
+#flash{position:relative;font-weight:900;font-size:clamp(40px,8vw,150px);text-align:center;text-shadow:0 0 40px #000}
+#flash.t{color:var(--red2)}
+#hero{position:relative;text-align:center;display:none;padding:0 4vw}
+#hero.on{display:block;animation:rise 1.4s ease}
+@keyframes rise{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+#hero .k{font-size:clamp(20px,2.4vw,42px);color:#cdeed5;font-weight:700}
+#hero .s{font-size:clamp(28px,4vw,72px);font-weight:900;margin:1.5vh 0}
+#hero .b{font-size:clamp(70px,13vw,240px);font-weight:900;line-height:1;color:#fff;text-shadow:0 0 50px var(--red),0 0 100px #e0262f88}
+#hero .h{font-size:clamp(22px,2.8vw,50px);font-weight:900;color:var(--red2);margin-top:2vh}
+#hero .c{font-size:clamp(15px,1.4vw,24px);color:#c4dccb;margin-top:1.5vh}
+.cf{position:absolute;top:-20px;width:12px;height:18px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.sndb{border:1px solid #dbe5de!important;position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(2.2vh + env(safe-area-inset-top,0px));z-index:30;font:inherit;font-weight:700;font-size:clamp(13px,1vw,17px);padding:.5em 1em;border:0;border-radius:99px;background:#fff;color:#173d1f;cursor:pointer;box-shadow:0 6px 20px #0006}
+.sndb.on{background:#0f4a22;color:#fff}
+.entry{display:flex;flex-direction:column;gap:1vh;min-width:min(52vw,760px);text-align:right}
+.erow{display:grid;grid-template-columns:auto 1fr auto auto;gap:.6vw;align-items:center}
+.erow.t{grid-template-columns:auto 1fr auto}
+.erow label{font-weight:900;font-size:clamp(14px,1.2vw,21px);min-width:6.5em}
+.erow.t label{color:var(--red)}
+.entry input,.entry select{font:inherit;font-size:clamp(14px,1.2vw,21px);padding:.45em .7em;border:1px solid #c9d8ce;border-radius:10px;background:#fff;color:var(--txt);min-width:0}
+.entry input:focus,.entry select:focus,.entry button:focus-visible{outline:3px solid #1f9d5555;border-color:#1f9d55}
+.entry button{font:inherit;font-weight:900;font-size:clamp(14px,1.2vw,21px);padding:.45em 1.1em;border:0;border-radius:10px;background:#0f4a22;color:#fff;cursor:pointer}
+.erow.t button{background:var(--red)}
+.emsg{min-height:1.4em;font-size:clamp(12px,1vw,17px);color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="art">المادة 34</div>
+    <div class="title">أمن السعودية والدفاع عنها واجب على الجميع<small>المتوسطة الأولى والثانية بالخبر</small></div>
+  </header>
+
+  <main>
+    <div class="big">السعودية خط <span>أحمر</span></div>
+    <div class="stage" id="stage">
+      <div class="band"></div>
+      <div class="side r" id="sideR"></div>
+      <div class="mapw">
+        <svg viewBox="-30 -30 860 700" aria-label="خريطة المملكة العربية السعودية">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c8a42"/><stop offset="1" stop-color="#0d5a2a"/></linearGradient></defs>
+          <path class="land" d="M652.6,538.4L643.9,539.6L635.5,540.8L626.1,542.2L614.7,543.8L605.8,545L592.8,546.9L581.1,548.5L570.2,550.1L559.2,551.7L549.9,553L544.3,554.6L537.8,557.9L527.7,563.1L517.5,568.3L512.3,571L506.7,578L503.9,581.5L498.8,587.9L494.9,592.7L490.4,598.4L488.4,603.6L485.4,611.5L482.7,613.5L478.3,616L474.3,617.8L468.1,617.6L464.7,612.7L460.8,607.6L458.9,605.6L457.3,605.4L451.1,606.1L443.5,606.9L434.8,606L424.6,605L415,604.2L410.2,603.5L404,600.1L402.4,599.5L400.7,599.3L393.4,599.2L385.9,599.1L378.5,600.2L371.5,599.8L364.2,600.4L361.5,601.7L358.7,601.6L356.9,602.7L355.4,603.3L353.4,602.3L351.1,602.5L347.8,601.7L345.6,599.5L343.6,597.6L341.5,596.5L339.1,595.9L336.9,595.8L334.3,597L332.7,598.2L328.6,601.9L328.4,603.3L330.3,605.5L329.6,606.6L327.3,607.9L326.6,611.5L326.2,613.4L325.8,618L326.9,621.7L328.3,623L328.4,624.6L327.6,627.8L325.4,628.7L323.8,631.7L322.7,633.1L321,634.7L314.1,640L313.7,636.9L311.6,632.4L311.5,629.1L310.4,625.9L308.5,623.4L305.1,620.9L304.7,617.3L302.2,613.9L298.8,611.1L296.9,605.9L295.5,599L286.6,589.9L275.5,581.6L272,576.8L266.5,567.2L263.7,559.6L256.2,550.8L256,547.4L254.8,543.3L253,538.7L252.1,535L244.5,519.1L242.2,516.6L240,513L239.5,510.2L238.8,508.7L233.7,506.1L228.6,499.3L213.9,488.6L206.6,487.6L200.9,483.8L196.6,478.7L192.1,470.1L184.1,460.8L177.5,447.5L179.6,442.6L179.5,439.2L177.4,433.5L175.1,429L173.5,424.8L174.9,418.8L175.2,412L176.6,408.4L177.5,404.5L176.3,396.5L174.1,392.3L174.3,389.4L171.8,388L169.7,384.9L171.8,385L167.9,380.7L166.5,378.3L165,372.4L163.2,368L157.2,357.8L154.3,351.6L147.8,343.6L140.7,337.6L136.4,335L134.2,332.5L130.5,332.4L126.5,328.9L123.7,328.8L120.3,328.2L116.2,321.4L112.7,315.1L106.9,306.8L108.3,304.6L110.1,301.1L109.3,296.5L108.3,293.4L105.8,287.6L97.3,273.3L95.1,271.2L91.5,268.8L89.4,262.6L88.3,257L82.5,254.3L72.6,234.2L66.8,227.1L64.5,222.3L57.9,214.5L54.7,206.7L47.9,199.5L42.1,187L33.2,174.4L29.4,172.2L20.2,171.3L16.2,170.4L12.6,173.1L12.4,169.6L14.9,164.8L18.3,154.6L19.1,145.6L24.7,119L32.5,120.3L39,121.5L48.5,123.1L58.3,124.8L64,125.9L65.9,125.4L73.8,118.9L81,112.9L85.2,105.7L89.4,98.6L91.2,97.2L97.6,95.9L107.7,93.8L117.6,91.7L118.3,91L120.7,85.3L123.6,78.2L124.3,77.4L124.9,76.7L132.1,72.6L136.4,70.1L130.2,62.9L124.4,56.1L117.9,48.4L112.5,42.4L104.1,33.4L98.8,27.5L108.2,24.7L118.4,21.7L128.8,18.6L141.3,14.9L151,12.1L165.6,7.8L172.6,5.7L173.9,5.1L179.4,0L187.6,1.4L199.9,3.6L211.9,5.7L224.5,8.1L228.6,10.1L240.7,17.3L248.7,22.1L257.8,27.6L269.4,34.5L277.2,39.2L287.4,45.2L295.3,52.1L305.3,60.8L316.2,70.4L325.3,77.8L337.7,87.9L350.1,97.9L362,107.7L371.7,115.5L383.8,125.3L384.9,125.7L397.1,126.8L413.7,128.4L430.3,129.8L445.3,131.2L451.8,129.8L458.8,130.7L468.4,131.9L474.1,132.7L485,134.3L488.3,140.7L489.5,145.2L490.5,149.6L493.7,153.5L501.2,153.4L507.7,153.3L515.8,153.2L522.3,153.1L524.3,157.1L525.2,161L529,170.3L534.5,177.5L535.7,180.2L536.6,184.1L535.7,185.7L535.3,187.3L539.3,191.3L546,194.6L548.6,195.5L551.5,197L549.2,199.2L553.2,204.6L557.7,209.9L562.6,211.1L569.3,219.2L579.1,224.5L585.2,231.4L584.7,231.5L582.8,230.8L580.7,229.9L580,230.7L580,233.6L580.7,237L583.7,239.9L586.5,242L587.6,246L585.3,254.5L584.7,254.4L583.2,253.7L581.6,253.6L580.8,254.1L582.7,260.2L584.4,264.9L586.7,268.6L588.5,274.1L590,276.4L596.5,282.2L598.3,287L600.2,296L604.2,300.9L606.4,304.8L609.4,308L611.2,312.5L613.9,315.9L615.3,316.8L617.3,317.1L620,317.1L623,316.3L626.3,315.4L629,317.1L631.7,316.9L631.9,318.5L630.2,320.7L627.9,326.2L631.1,327.1L634,327.5L636.3,328.5L637.5,328.5L637.5,329.6L637.6,334.8L638.4,336.8L639.8,338.6L641.7,341.2L643.7,343.9L645.9,346.5L647.8,349.1L649.8,351.8L652,354.4L654,357L655.9,359.7L657.9,362.3L660.1,365L662.1,367.6L664,370.2L666.2,372.9L668.2,375.5L670.2,378.1L672.1,380.7L673.9,382.9L676.9,383.3L678,383.4L680.8,383.8L685,384.4L690.7,385.1L697.4,386L704.8,387L712.8,388L721,389.1L729.2,390.2L737.1,391.3L744.5,392.3L751.3,393.2L756.8,393.9L761.2,394.5L764,394.8L764.9,395L767.9,395.4L768.4,395.2L770.9,392L773.6,396.6L775.8,400.3L778.9,405.5L782.2,411L785.4,416.1L787.6,420.1L786.4,424.1L785.1,428.5L783.8,432.8L782.3,437.2L781,441.6L779.7,446L778.3,450.4L777,454.8L775.6,459.2L774.2,463.5L772.9,467.9L771.6,472.2L770.2,476.6L768.9,481L767.5,485.4L766.1,489.7L764.8,494L763.2,499.3L759.2,500.6L753,502.9L746.6,505.1L740.2,507.4L733.9,509.7L727.5,511.9L721.3,514.2L714.9,516.4L708.5,518.7L702.1,520.9L695.8,523.1L689.5,525.4L683.2,527.6L676.8,529.9L670.4,532.1L664.2,534.3L657.8,536.6Z"/>
+        </svg>
+      </div>
+      <div class="side l" id="sideL"></div>
+    </div>
+    <svg class="hash" viewBox="0 0 1100 110" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="hf" x1="1" y1="0" x2="0" y2="0">
+          <stop id="hs1" offset="0" stop-color="#ff3b44"/><stop id="hs2" offset="0" stop-color="#14361d1a"/>
+        </linearGradient>
+      </defs>
+      <text x="550" y="82" text-anchor="middle" fill="url(#hf)" stroke="#ff4b5355" stroke-width="1.5" font-family="Tajawal,Tahoma">#أمن_السعودية_خط_أحمر</text>
+    </svg>
+    <div class="hcount">الطالبات يكملن الهاشتاق: <b id="sc">0</b> من <b id="st">200</b></div>
+  </main>
+
+  <aside>
+    <form class="box entry" id="entry" autocomplete="off">
+      <div class="erow">
+        <label for="sName">اسم الطالبة</label>
+        <input id="sName" maxlength="40" placeholder="اكتبي اسمك">
+        <select id="sCls" aria-label="الصف"><option>أول متوسط</option><option>ثاني متوسط</option><option>ثالث متوسط</option></select>
+        <button type="button" id="sGo">أضيفي اسمك</button>
+      </div>
+      <div class="erow t">
+        <label for="tName">اسم المعلمة</label>
+        <input id="tName" maxlength="40" placeholder="أ. ">
+        <button type="button" id="tGo">أضيفي اسمك</button>
+      </div>
+      <div class="emsg" id="emsg" aria-live="polite"></div>
+    </form>
+    <div class="box st">
+      <div class="stat"><span>المعلمات — الخط الأحمر</span><b id="tc">0</b></div>
+      <div class="bar"><i id="tb"></i></div>
+      <div class="stat" style="margin-top:1.6vh"><span>الطالبات — الهاشتاق</span><b id="sc2">0</b></div>
+      <div class="bar s"><i id="sb"></i></div>
+    </div>
+  </aside>
+
+  <footer><div class="track" id="track"><span>السعودية خط أحمر</span></div></footer>
+</div>
+
+<audio id="snd" src="sound.mp3" preload="auto"></audio>
+<audio id="song" src="song.mp3" preload="auto"></audio>
+<button id="sndBtn" class="sndb" type="button">🔇 تفعيل الصوت</button>
+<div class="toast" id="toast"><div class="n" id="tn"></div><div class="r" id="tr"></div></div>
+
+<div id="fin" title="اضغطي للإغلاق">
+  <div id="cloud"></div>
+  <div id="flash"></div>
+  <div id="hero">
+    <div class="k">اكتمل الخط الأحمر… واكتمل الهاشتاق</div>
+    <div class="s" id="school">منسوبات المتوسطة الأولى والثانية</div>
+    <div class="b">أبطال</div>
+    <div class="h">#السعودية_خط_أحمر</div>
+    <div class="c" id="fc"></div>
+  </div>
+</div>
+
+<script>
+const qs = new URLSearchParams(location.search);
+const DEMO = qs.has('demo');
+const $ = id => document.getElementById(id);
+const ar = n => Number(n).toLocaleString('ar-SA');
+let T = 25, S = 200, school = 'منسوبات المتوسطة الأولى والثانية بالخبر';
+let teachers = [], students = [], seen = null, finaleSeen = null, playing = false, autoPlayed = false, lineDone = false;
+
+function drawTeachers(newIds) {
+  const slots = Math.max(T, teachers.length);
+  const per = Math.ceil(slots / 2), cols = Math.max(1, Math.ceil(per / 3));
+  const bufs = [[], []];
+  for (let i = 0; i < cols * 3 * 2; i++) {
+    const t = teachers[i];
+    bufs[i % 2].push(t ? `<div class="brick${newIds.has(t.id) ? ' new' : ''}"><span>${esc(t.n)}</span></div>` : '<div class="brick empty"></div>');
+  }
+  [$('sideR'), $('sideL')].forEach((el, k) => { el.style.gridTemplateColumns = `repeat(${cols},1fr)`; el.innerHTML = bufs[k].join(''); });
+  const full = teachers.length >= T;
+  $('stage').classList.toggle('full', full);
+  if (full && !lineDone && seen) playSound();
+  lineDone = full;
+}
+
+function render(newIds) {
+  drawTeachers(newIds);
+  const sp = Math.min(1, students.length / S);
+  $('hs1').setAttribute('offset', sp); $('hs2').setAttribute('offset', sp);
+  $('sc').textContent = ar(students.length); $('st').textContent = ar(S);
+  $('tc').textContent = ar(teachers.length) + ' / ' + ar(T);
+  $('sc2').textContent = ar(students.length) + ' / ' + ar(S);
+  $('tb').style.width = Math.min(100, teachers.length / T * 100) + '%';
+  $('sb').style.width = sp * 100 + '%';
+  const last = students.slice(-60).reverse();
+  if (last.length) {
+    const items = last.map(s => `<span>${esc(s.n)}</span>`).join('');
+    $('track').innerHTML = items + items;
+    $('track').style.animationDuration = Math.max(25, last.length * 2.2) + 's';
+  }
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// إشعار الأسماء الجديدة
+const queue = []; let toasting = false;
+function toastNext() {
+  if (toasting || !queue.length || playing) return;
+  toasting = true;
+  const x = queue.shift();
+  $('tn').textContent = x.n;
+  $('tr').textContent = x.t ? 'انضمت إلى الخط الأحمر 🇸🇦' : 'أضافت اسمها للهاشتاق 🇸🇦';
+  $('toast').className = 'toast on' + (x.t ? ' t' : '');
+  setTimeout(() => { $('toast').className = 'toast' + (x.t ? ' t' : ''); setTimeout(() => { toasting = false; toastNext(); }, 450); }, queue.length > 5 ? 900 : 2200);
+}
+
+function apply(d) {
+  T = d.target.t; S = d.target.s; school = d.school || school;
+  const ids = new Set([...d.teachers, ...d.students].map(x => x.id));
+  const newIds = new Set();
+  if (seen) {
+    d.teachers.forEach(x => { if (!seen.has(x.id)) { newIds.add(x.id); queue.push({ n: x.n, t: 1 }); } });
+    d.students.forEach(x => { if (!seen.has(x.id)) { newIds.add(x.id); queue.push({ n: x.n, t: 0 }); } });
+    if (queue.length > 12) queue.splice(0, queue.length - 12);
+  }
+  seen = ids; teachers = d.teachers; students = d.students;
+  render(newIds); toastNext();
+  // الختام: عند الاكتمال لأول مرة، أو عند تشغيله من لوحة الإدارة
+  const complete = teachers.length >= T && students.length >= S;
+  let played = null; try { played = localStorage.getItem('ka34_fin'); } catch (e) {}
+  if (finaleSeen === null) { finaleSeen = d.finale; }
+  else if (d.finale && d.finale !== finaleSeen) { finaleSeen = d.finale; finale(); return; }
+  if (complete && !autoPlayed && (DEMO || played !== 'done')) { autoPlayed = true; if (!DEMO) try { localStorage.setItem('ka34_fin', 'done'); } catch (e) {} setTimeout(finale, 3500); }
+}
+
+async function poll() {
+  try {
+    const r = await fetch('api.php?action=list&_=' + Date.now());
+    apply(await r.json());
+  } catch (e) {}
+  setTimeout(poll, 3000);
+}
+
+// ===== الصوت: يشتغل عند اكتمال الخط الأحمر ومع مونتاج الختام =====
+let soundOn = false;
+const snd = $('snd');
+const song = $('song');
+function playSong() { if (!soundOn) return; try { snd.pause(); song.currentTime = 0; song.play().catch(() => {}); } catch (e) {} }
+function playSound() { if (!soundOn) return; try { snd.currentTime = 0; snd.play().catch(() => {}); } catch (e) {} }
+$('sndBtn').onclick = () => {
+  soundOn = !soundOn;
+  $('sndBtn').textContent = soundOn ? '🔊 الصوت مفعّل' : '🔇 تفعيل الصوت';
+  $('sndBtn').classList.toggle('on', soundOn);
+  if (soundOn) snd.play().then(() => { snd.pause(); snd.currentTime = 0; }).catch(() => {}); else snd.pause();
+};
+
+// ===== مونتاج الختام =====
+function finale() {
+  if (playing) return; playing = true;
+  const fin = $('fin'), cloud = $('cloud'), flash = $('flash'), hero = $('hero');
+  cloud.innerHTML = ''; cloud.style.opacity = '1'; hero.className = '';
+  playSong(); flash.style.display = 'block';
+  fin.classList.add('on');
+  const all = [...teachers.map(x => ({ n: x.n, t: 1 })), ...students.map(x => ({ n: x.n, t: 0 }))];
+  for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
+  // المعلمات أولًا ثم الطالبات
+  all.sort((a, b) => b.t - a.t);
+  const dur = 11000, step = Math.max(22, Math.min(320, dur / Math.max(1, all.length)));
+  let i = 0;
+  const tick = () => {
+    if (i >= all.length) return heroShow();
+    const x = all[i++];
+    flash.textContent = x.n; flash.className = x.t ? 't' : '';
+    if (i % Math.max(1, Math.round(all.length / 220)) === 0 || all.length < 220) {
+      const s = document.createElement('span');
+      s.textContent = x.n;
+      s.style.left = Math.random() * 92 + '%'; s.style.top = Math.random() * 94 + '%';
+      s.style.fontSize = (12 + Math.random() * 16) + 'px';
+      s.style.color = x.t ? '#ff4b53' : (Math.random() < .5 ? '#7fe3e0' : '#1bb064');
+      cloud.appendChild(s);
+    }
+    setTimeout(tick, step);
+  };
+  setTimeout(tick, 600);
+  function heroShow() {
+    flash.style.display = 'none';
+    $('school').textContent = school;
+    $('fc').textContent = ar(teachers.length) + ' معلمة و ' + ar(students.length) + ' طالبة رسمن الخط الأحمر معًا';
+    hero.className = 'on'; cloud.style.opacity = '.35';
+    confetti();
+    setTimeout(closeFin, 45000);
+  }
+}
+function confetti() {
+  const cols = ['#1bb064', '#ffffff', '#e0262f', '#2ec4c4'];
+  for (let i = 0; i < 160; i++) {
+    const c = document.createElement('i'); c.className = 'cf';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = cols[i % cols.length];
+    c.style.animationDuration = (3 + Math.random() * 4) + 's';
+    c.style.animationDelay = (Math.random() * 3) + 's';
+    $('fin').appendChild(c);
+    setTimeout(() => c.remove(), 11000);
+  }
+}
+function closeFin() { try { snd.pause(); song.pause(); } catch (e) {} $('fin').classList.remove('on'); playing = false; toastNext(); }
+$('fin').onclick = closeFin;
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFin(); });
+document.addEventListener('dblclick', () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); });
+
+// ===== وضع التجربة: index.html?demo =====
+if (DEMO) {
+  const fn = ['نورة', 'سارة', 'ريم', 'لمى', 'جود', 'رهف', 'شهد', 'غلا', 'دانة', 'لين', 'ميار', 'حلا', 'جنى', 'رزان', 'وعد', 'هيا', 'العنود', 'مها', 'أروى', 'تالا'];
+  const ln = ['العتيبي', 'القحطاني', 'الشمري', 'الدوسري', 'الغامدي', 'الزهراني', 'عسيري', 'الحربي', 'المطيري', 'السبيعي'];
+  const d = { teachers: [], students: [], finale: 0, target: { t: 25, s: 200 }, school };
+  let id = 0;
+  const add = () => {
+    for (let k = 0; k < 6; k++) {
+      const n = fn[Math.random() * fn.length | 0] + ' ' + ln[Math.random() * ln.length | 0];
+      if (d.teachers.length < 25 && Math.random() < .2) d.teachers.push({ id: ++id, n: 'أ. ' + n });
+      else if (d.students.length < 200) d.students.push({ id: ++id, n });
+    }
+    if (d.teachers.length < 25 && d.students.length >= 200) d.teachers.push({ id: ++id, n: 'أ. ' + fn[id % 20] });
+    apply(JSON.parse(JSON.stringify(d)));
+    if (d.teachers.length < 25 || d.students.length < 200) setTimeout(add, 1500);
+  };
+  const init = +(qs.get('demo') || 0);
+  if (init) { while (d.students.length < init * 5) { d.students.push({ id: ++id, n: fn[id % 20] + ' ' + ln[id % 10] }); if (d.teachers.length < init / 4) d.teachers.push({ id: ++id, n: 'أ. ' + fn[id % 20] + ' ' + ln[id % 10] }); } }
+  apply(JSON.parse(JSON.stringify(d)));
+  setTimeout(add, 1500);
+} else {
+  // ===== النسخة المحلية: الأسماء تُحفظ في متصفح جهاز الشاشة =====
+  const KEY = 'ka34_names';
+  let store = { teachers: [], students: [], seq: 0 };
+  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.teachers) store = s; } catch (e) {}
+  if (qs.has('reset')) { store = { teachers: [], students: [], seq: 0 }; try { localStorage.removeItem(KEY); localStorage.removeItem('ka34_fin'); } catch (e) {} }
+  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/\s+/g, '');
+  const pack = () => ({ teachers: store.teachers, students: store.students, finale: 0, target: { t: T, s: S }, school });
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+  function add(role) {
+    const inp = $(role === 't' ? 'tName' : 'sName');
+    const n = inp.value.trim().replace(/\s+/g, ' ').slice(0, 40);
+    if (n.length < 2) { $('emsg').textContent = 'اكتبي الاسم أولًا'; inp.focus(); return; }
+    const list = role === 't' ? store.teachers : store.students;
+    const c = role === 't' ? '' : $('sCls').value;
+    if (list.some(x => norm(x.n) === norm(n) && (x.c || '') === c)) { $('emsg').textContent = 'الاسم موجود على اللوحة'; return; }
+    list.push({ id: ++store.seq, n, c });
+    save(); apply(pack());
+    inp.value = ''; $('emsg').textContent = 'تمت إضافة ' + n + ' 🇸🇦';
+  }
+  $('sGo').onclick = () => add('s'); $('tGo').onclick = () => add('t');
+  $('sName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('s'); } });
+  $('tName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('t'); } });
+  $('entry').addEventListener('submit', e => e.preventDefault());
+  apply(pack());
+}
+</script>
+</body>
+</html>
