@@ -131,14 +131,14 @@ footer{grid-column:1/-1;height:6.5vh;margin:1.2vh -2.2vw 0;background:#0f4a22;co
         <button type="button" id="sGo">أضيفي اسمك</button>
       </div>
       <div class="erow t">
-        <label for="tName">اسم المعلمة</label>
+        <label for="tName">اسم المنسوبة</label>
         <input id="tName" maxlength="40" placeholder="أ. ">
         <button type="button" id="tGo">أضيفي اسمك</button>
       </div>
       <div class="emsg" id="emsg" aria-live="polite"></div>
     </form>
     <div class="box st">
-      <div class="stat"><span>المعلمات — الخط الأحمر</span><b id="tc">0</b></div>
+      <div class="stat"><span>المنسوبات — الخط الأحمر</span><b id="tc">0</b></div>
       <div class="bar"><i id="tb"></i></div>
       <div class="stat" style="margin-top:1.6vh"><span>الطالبات — الهاشتاق</span><b id="sc2">0</b></div>
       <div class="bar s"><i id="sb"></i></div>
@@ -267,7 +267,7 @@ function finale() {
   fin.classList.add('on');
   const all = [...teachers.map(x => ({ n: x.n, t: 1 })), ...students.map(x => ({ n: x.n, t: 0 }))];
   for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
-  // المعلمات أولًا ثم الطالبات
+  // المنسوبات أولًا ثم الطالبات
   all.sort((a, b) => b.t - a.t);
   const dur = 11000, step = Math.max(22, Math.min(320, dur / Math.max(1, all.length)));
   let i = 0;
@@ -289,7 +289,7 @@ function finale() {
   function heroShow() {
     flash.style.display = 'none';
     $('school').textContent = school;
-    $('fc').textContent = ar(teachers.length) + ' معلمة و ' + ar(students.length) + ' طالبة رسمن الخط الأحمر معًا';
+    $('fc').textContent = ar(teachers.length) + ' منسوبة و ' + ar(students.length) + ' طالبة رسمن الخط الأحمر معًا';
     hero.className = 'on'; cloud.style.opacity = '.35';
     confetti();
     setTimeout(closeFin, 45000);
