@@ -90,6 +90,7 @@ footer{grid-column:1/-1;height:6.5vh;margin:1.2vh -2.2vw 0;background:#0f4a22;co
 .erow.t button{background:var(--red)}
 .emsg{min-height:1.4em;font-size:clamp(12px,1vw,17px);color:var(--mut)}
 .title small.by{font-size:.4em;color:var(--mut);font-weight:700;margin-top:.15em}
+@media (max-aspect-ratio:1/1){html,body{overflow:auto}.app{height:auto;min-height:100%}header{flex-direction:column;gap:8px}.stage{--bh:110px}.brick{font-size:9px;padding:0 2px}aside{flex-direction:column}.entry{min-width:0}.erow,.erow.t{grid-template-columns:1fr}footer{height:48px}}
 </style>
 </head>
 <body>
@@ -334,30 +335,65 @@ if (DEMO) {
   apply(JSON.parse(JSON.stringify(d)));
   setTimeout(add, 1500);
 } else {
-  // ===== النسخة المحلية: الأسماء تُحفظ في متصفح جهاز الشاشة =====
-  const KEY = 'ka34_names';
-  let store = { teachers: [], students: [], seq: 0 };
-  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.teachers) store = s; } catch (e) {}
-  if (qs.has('reset')) { store = { teachers: [], students: [], seq: 0 }; try { localStorage.removeItem(KEY); localStorage.removeItem('ka34_fin'); } catch (e) {} }
-  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/\s+/g, '');
-  const pack = () => ({ teachers: store.teachers, students: store.students, finale: 0, target: { t: T, s: S }, school });
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
-  function add(role) {
-    const inp = $(role === 't' ? 'tName' : 'sName');
-    const n = inp.value.trim().replace(/\s+/g, ' ').slice(0, 40);
-    if (n.length < 2) { $('emsg').textContent = 'اكتبي الاسم أولًا'; inp.focus(); return; }
-    const list = role === 't' ? store.teachers : store.students;
-    const c = role === 't' ? '' : $('sCls').value;
-    if (list.some(x => norm(x.n) === norm(n) && (x.c || '') === c)) { $('emsg').textContent = 'الاسم موجود على اللوحة'; return; }
-    list.push({ id: ++store.seq, n, c });
-    save(); apply(pack());
-    inp.value = ''; $('emsg').textContent = 'تمت إضافة ' + n + ' 🇸🇦';
+  // ===== الحفظ المشترك عبر Google Sheets: ضعي رابط Apps Script هنا =====
+  const API = '';
+  if (API) {
+    const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/\s+/g, '');
+    let cur = { teachers: [], students: [] }, busy = false, first = true;
+    const pack = () => ({ teachers: cur.teachers, students: cur.students, finale: 0, target: { t: T, s: S }, school });
+    const setMsg = t => { $('emsg').textContent = t; };
+    async function pull(qs2) {
+      const r = await fetch(API + '?' + (qs2 || 'action=list') + '&_=' + Date.now());
+      const d = await r.json();
+      if (d && d.teachers) { cur = d; if (first) { seen = null; first = false; } apply(pack()); }
+    }
+    async function loop() { try { await pull(); } catch (e) {} setTimeout(loop, 5000); }
+    async function add(role) {
+      if (busy) return;
+      const inp = $(role === 't' ? 'tName' : 'sName');
+      const n = inp.value.trim().replace(/\s+/g, ' ').slice(0, 40);
+      if (n.length < 2) { setMsg('اكتبي الاسم أولًا'); inp.focus(); return; }
+      const c = role === 't' ? '' : $('sCls').value;
+      const list = role === 't' ? cur.teachers : cur.students;
+      if (list.some(x => norm(x.n) === norm(n) && (x.c || '') === c)) { setMsg('الاسم موجود على اللوحة'); return; }
+      busy = true; setMsg('جاري الإضافة…');
+      try {
+        await pull('action=add&r=' + role + '&n=' + encodeURIComponent(n) + '&c=' + encodeURIComponent(c));
+        inp.value = ''; setMsg('تمت إضافة ' + n + ' 🇸🇦');
+      } catch (e) { setMsg('ما تم الحفظ، تأكدي من الإنترنت وحاولي مرة ثانية'); }
+      busy = false;
+    }
+    $('sGo').onclick = () => add('s'); $('tGo').onclick = () => add('t');
+    $('sName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('s'); } });
+    $('tName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('t'); } });
+    $('entry').addEventListener('submit', e => e.preventDefault());
+    apply(pack()); loop();
+  } else {
+    // ===== النسخة المحلية: الأسماء تُحفظ في متصفح جهاز الشاشة =====
+    const KEY = 'ka34_names';
+    let store = { teachers: [], students: [], seq: 0 };
+    try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.teachers) store = s; } catch (e) {}
+    if (qs.has('reset')) { store = { teachers: [], students: [], seq: 0 }; try { localStorage.removeItem(KEY); localStorage.removeItem('ka34_fin'); } catch (e) {} }
+    const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/\s+/g, '');
+    const pack = () => ({ teachers: store.teachers, students: store.students, finale: 0, target: { t: T, s: S }, school });
+    const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+    function add(role) {
+      const inp = $(role === 't' ? 'tName' : 'sName');
+      const n = inp.value.trim().replace(/\s+/g, ' ').slice(0, 40);
+      if (n.length < 2) { $('emsg').textContent = 'اكتبي الاسم أولًا'; inp.focus(); return; }
+      const list = role === 't' ? store.teachers : store.students;
+      const c = role === 't' ? '' : $('sCls').value;
+      if (list.some(x => norm(x.n) === norm(n) && (x.c || '') === c)) { $('emsg').textContent = 'الاسم موجود على اللوحة'; return; }
+      list.push({ id: ++store.seq, n, c });
+      save(); apply(pack());
+      inp.value = ''; $('emsg').textContent = 'تمت إضافة ' + n + ' 🇸🇦';
+    }
+    $('sGo').onclick = () => add('s'); $('tGo').onclick = () => add('t');
+    $('sName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('s'); } });
+    $('tName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('t'); } });
+    $('entry').addEventListener('submit', e => e.preventDefault());
+    apply(pack());
   }
-  $('sGo').onclick = () => add('s'); $('tGo').onclick = () => add('t');
-  $('sName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('s'); } });
-  $('tName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add('t'); } });
-  $('entry').addEventListener('submit', e => e.preventDefault());
-  apply(pack());
 }
 </script>
 </body>
